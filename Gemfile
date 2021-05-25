@@ -35,6 +35,9 @@ gem 'omniauth-rails_csrf_protection'
 
 gem 'slim'
 
+gem 'carrierwave', '~> 2.0'
+gem "mini_magick"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
