@@ -1,5 +1,5 @@
 doctype html
-html
+html.h-100
   head
     title Rails 6 Boilerplate
     meta[name="viewport" content="width=device-width,initial-scale=1"]
@@ -7,8 +7,9 @@ html
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  body
+  body.d-flex.align-items-center.h-100.bg-app
     = yield
+    = yield :js
 
     - if notice
       = raw "<script>toastr.success('"+notice+"')</script>"

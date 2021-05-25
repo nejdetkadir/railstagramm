@@ -2,3 +2,41 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "toastr/build/toastr";
+
+.bg-app{
+  background-color: #fafafa !important;
+}
+
+input:focus{
+  box-shadow: none !important;
+  border-color: #9e9e9e !important;
+}
+
+.btn-blue{
+  color: #fff;
+  background-color: #1795f6;
+  border-color: #1795f6;
+
+  &:focus{
+    color: white;
+    border-color: #0d6efd;
+  }
+
+  &:hover{
+    color: white;
+  }
+}
+
+.cursorable{
+  cursor: pointer;
+}
+
+#pass:focus{
+  box-shadow: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .d-none-mobile{
+    display: none !important;
+  }
+}
