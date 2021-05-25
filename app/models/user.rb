@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2, :github]
 
+  validates_presence_of [:fullname, :birthday, :username]
+  validates_uniqueness_of :username
+
   def self.from_omniauth(access_token)
     # You can learn which provider used
     # provider = access_token.provider 

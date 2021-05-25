@@ -1,0 +1,48 @@
+.container
+  .row
+    .col-md-4
+    .col-md-4
+      .card
+        .card-body
+          .text-center
+            = image_tag "logo_small.png", class: "img-fluid"
+            .pe-5.ps-5
+              h5.text-muted.fw-bold Sign up to see photos and videos from your friends.
+          .row.d-flex.align-items-center
+            .col-4
+              hr
+            .col-4.text-center.text-muted.fw-bold Log in with
+            .col-4
+              hr
+          .d-flex.justify-content-around
+            = render "devise/shared/omniauths"
+          .row.d-flex.align-items-center
+            .col-5
+              hr
+            .col-2.text-center.text-muted.fw-bold OR
+            .col-5
+              hr
+          = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "ps-4 pe-4 pt-4", step: "1"}) do |f|
+            .mb-2
+              = f.email_field :email, class: "form-control", placeholder: "Email"
+            .mb-2
+              = f.text_field :fullname, class: "form-control", placeholder: "Fullname"
+            .mb-2
+              = f.text_field :username, class: "form-control", placeholder: "Username"
+            .mb-2
+              = f.password_field :password, class: "form-control", placeholder: "Password"
+            .mb-2
+              = f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation"
+            .mb-2
+              = f.date_field :birthday, class: "form-control"
+            .d-grid.gap-2.mb-4
+              = f.submit "Sign up", class: "btn btn-blue fw-bolder"
+      .card.mt-2.mb-3
+        .card-body
+          .text-center
+            | Have an account?
+            = link_to " Log in", new_user_session_path, class: "text-decoration-none"
+      = render "devise/shared/mobile_apps"
+    .col-md-4
+= content_for :js do 
+  = render "devise/shared/error_messages", resource: resource

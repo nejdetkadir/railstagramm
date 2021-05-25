@@ -17,8 +17,7 @@
         .col-5
           hr
       .d-flex.justify-content-around.mb-3
-        = icon('fab', 'github', class: "fs-2 cursorable")
-        = icon('fab', 'google-plus', class: "fs-2 text-danger cursorable")
+        = render "devise/shared/omniauths"
       .text-center.mb-1
         = link_to "Forgot password?", new_user_password_path, class: "text-decoration-none"
 .card.mt-2.mb-3
@@ -26,10 +25,7 @@
     .text-center
       | Don't have an account?
       = link_to " Sign up", new_user_registration_path, class: "text-decoration-none fw-bold"
-.text-center.mb-3 Get the app.
-.d-flex.justify-content-around
-  = image_tag "app_store.png", class: "cursorable"
-  = image_tag "play_store.png", class: "cursorable"
+= render "devise/shared/mobile_apps"
 
 = content_for :js do
   javascript:
