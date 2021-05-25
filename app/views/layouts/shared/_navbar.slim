@@ -1,0 +1,29 @@
+header.py-3.mb-4.border-bottom.bg-white.fixed-top
+  .container.d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-md-between
+    = link_to admin_feed_path do
+      = image_tag "logo_small.png", height: "32"
+    .nav.col-12.col-md-auto.mb-2.justify-content-center.mb-md-0.d-none-mobile
+      input.form-control.form-control-sm(type="search" placeholder="Search")
+    .col-md-3.text-end.fs-4.d-flex.justify-content-around
+      = link_to admin_feed_path do
+        = icon('fas', 'home', class: "text-dark pe-1-mobile")
+      = link_to admin_feed_path do
+        = icon('fab', 'facebook-messenger', class: "text-dark pe-1-mobile")
+      = link_to admin_feed_path do
+        = icon('fas', 'compass', class: "text-dark pe-1-mobile")
+      = link_to admin_feed_path do
+        = icon('fas', 'heart', class: "text-dark pe-1-mobile")
+      .dropdown
+        a#dropdownUser.d-block.link-dark.text-decoration-none.dropdown-toggle(href='#' data-bs-toggle='dropdown' aria-expanded='false')
+          = image_tag "default_profile_small.png", class: "rounded-circle"
+        ul.dropdown-menu.text-small(aria-labelledby='dropdownUser')
+          li
+            a.dropdown-item(href='#') Profile
+          li
+            a.dropdown-item(href='#') Saved
+          li
+            a.dropdown-item(href='#') Settings
+          li
+            hr.dropdown-divider
+          li
+            = link_to "Log Out", destroy_user_session_path, class: "dropdown-item", data: {:confirm => 'Are you sure?'}, method: :delete

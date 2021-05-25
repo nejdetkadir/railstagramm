@@ -7,8 +7,10 @@ html
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  body
-    = yield
+  body.bg-app
+    = render "layouts/shared/navbar"
+    main
+      = yield
     = yield :js
 
     = render "layouts/shared/flash"
