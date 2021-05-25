@@ -77,6 +77,29 @@ main{
     color: black;
     text-decoration: underline !important;
   }
+
+  .info{
+    display: none;
+
+    .placeholder{
+      position: absolute;
+      width: -webkit-fill-available;
+      height: -webkit-fill-available;
+      text-align: center;
+      background-color: #00000057;
+      color: white !important;
+      display: flex; 
+      align-items: center;
+      justify-content: space-evenly; 
+      text-align: center;
+    }
+  }
+
+  &.mini-post:hover{
+    .info{
+      display: block !important;
+    }
+  }
 }
 
 .post-time{
@@ -97,6 +120,47 @@ main{
     text-decoration: underline !important;
   }
 }
+
+.btn-app{
+  border: 1px solid #dee2e6!important;
+
+  &:focus{
+    box-shadow: none;
+  }
+}
+
+.bio{
+  font-size: 14px;
+}
+
+.website{
+  color: #00376b;
+  text-decoration: none;
+
+  &:hover{
+    color: #00376b;
+  }
+}
+
+.nav-link {
+  color: #999999 !important;
+  font-weight: bold !important;
+  font-size: smaller !important;
+
+  &.active{
+    background-color: #fafafa !important;
+    color: black !important;
+
+    &:hover{
+      color: black !important;
+    }
+  }
+
+  &:hover{
+    color: #999999 !important;
+  }
+}
+
 
 @media only screen and (max-width: 600px) {
   .d-none-mobile{

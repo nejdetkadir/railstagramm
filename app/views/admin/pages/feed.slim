@@ -3,32 +3,7 @@
     .col-md-8
       .mt-4
         - 10.times do
-          .card.mb-5.post
-            .card-header.d-flex.justify-content-between.align-items-center
-              .d-flex
-                = image_tag "default_profile_small.png"
-                = link_to "testuser1", root_path, class: "fw-bold ps-2 text-dark text-decoration-none"
-              = icon('fas', 'ellipsis-h', class: "cursorable")
-            .card-body
-              img.img-fluid(src="https://via.placeholder.com/960x360")
-            .card-footer
-              .d-flex.justify-content-between.fs-3.mb-2
-                .d-flex.justify-content-between
-                  = icon('far', 'heart', class: "cursorable")
-                  = icon('far', 'comment ps-3', class: "cursorable")
-                  = icon('fas', 'location-arrow ps-3', class: "cursorable")
-                = icon('far', 'bookmark', class: "cursorable")
-              .fw-bold 55 likes
-              .comments.mt-2
-                - 3.times do
-                  .d-flex.justify-content-start
-                    = link_to "testuer1", root_path, class: "fw-bold text-decoration-none text-dark"
-                    .fw-normal.ps-2 lorem ipsum dolor sit amet
-              .mt-2.fw-light.post-time 44 MINUTES AGO 
-            .card-footer.comment-area
-              .input-group
-                textarea.form-control(type='text' placeholder="Add a comment..." rows="1")
-                button.btn.btn-link.text-decoration-none.fw-bold(type='button') Post
+          = render "admin/posts/medium_post"
     .col-md-4.d-none-mobile
       .mt-5.position-fixed
         .d-flex.justify-content-between.align-items-center
