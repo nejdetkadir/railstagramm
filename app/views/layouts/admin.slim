@@ -1,5 +1,5 @@
 doctype html
-html.h-100
+html
   head
     title Rails 6 Boilerplate
     meta[name="viewport" content="width=device-width,initial-scale=1"]
@@ -7,7 +7,7 @@ html.h-100
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  body.d-flex.align-items-center.h-100.bg-app
+  body
     = yield
     = yield :js
 
