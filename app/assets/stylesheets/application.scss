@@ -35,6 +35,10 @@ input:focus{
   box-shadow: none;
 }
 
+.mt-12{
+  margin-top: 12rem!important;
+}
+
 @media only screen and (max-width: 600px) {
   .d-none-mobile{
     display: none !important;

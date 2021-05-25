@@ -1,4 +1,4 @@
-.container
+.container.mt-12
   .row
     .col-md-4
     .col-md-4
@@ -22,7 +22,7 @@
             .col-2.text-center.text-muted.fw-bold OR
             .col-5
               hr
-          = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "ps-4 pe-4 pt-4", step: "1"}) do |f|
+          = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "ps-4 pe-4 pt-4"}) do |f|
             .mb-2
               = f.email_field :email, class: "form-control", placeholder: "Email"
             .mb-2
@@ -43,6 +43,7 @@
             | Have an account?
             = link_to " Log in", new_user_session_path, class: "text-decoration-none"
       = render "devise/shared/mobile_apps"
+      .mb-5
     .col-md-4
 = content_for :js do 
   = render "devise/shared/error_messages", resource: resource
