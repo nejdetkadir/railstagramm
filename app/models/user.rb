@@ -7,6 +7,8 @@ class User < ApplicationRecord
   validates_presence_of [:fullname, :birthday, :username]
   validates_uniqueness_of :username
 
+  has_many :posts
+
   def self.from_omniauth(access_token)
     # You can learn which provider used
     # provider = access_token.provider 
