@@ -1,0 +1,48 @@
+.card
+  .card-body
+    .text-center
+      = image_tag "logo_small.png", class: "img-fluid"
+    = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "ps-4 pe-4 pt-4"}) do |f|
+      .mb-2
+        = f.email_field :email, class: "form-control", placeholder: "Email"
+      .input-group.mb-4
+        = f.password_field :password, class: "form-control", placeholder: "Password"
+        button#pass.btn.btn-outline-secondary(type='button') Show
+      .d-grid.gap-2.mb-4
+        button.btn.btn-blue.fw-bolder Log In
+      .row.d-flex.align-items-center
+        .col-5
+          hr
+        .col-2.text-center.text-muted.fw-bold OR
+        .col-5
+          hr
+      .d-flex.justify-content-around.mb-3
+        = icon('fab', 'github', class: "fs-2 cursorable")
+        = icon('fab', 'google-plus', class: "fs-2 text-danger cursorable")
+      .text-center.mb-1
+        = link_to "Forgot password?", new_user_password_path, class: "text-decoration-none"
+.card.mt-2.mb-3
+  .card-body
+    .text-center
+      | Don't have an account?
+      = link_to " Sign up", new_user_registration_path, class: "text-decoration-none fw-bold"
+.text-center.mb-3 Get the app.
+.d-flex.justify-content-around
+  = image_tag "app_store.png", class: "cursorable"
+  = image_tag "play_store.png", class: "cursorable"
+
+= content_for :js do
+  javascript:
+    document.addEventListener("turbolinks:load", function() {
+      if (document.body.contains(document.getElementById("pass"))) {
+        document.getElementById("pass").addEventListener('click', function(e) {
+          if (e.path[1].childNodes[0].type == "password") {
+            e.path[1].childNodes[0].type = "text"
+            e.target.innerText = "Hide"
+          } else {
+            e.path[1].childNodes[0].type = "password"
+            e.target.innerText = "Show"
+          }
+        })
+      }
+    })
