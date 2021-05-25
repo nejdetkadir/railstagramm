@@ -8,11 +8,11 @@
         .card-body
           .text-center
             = image_tag "logo_small.png", class: "img-fluid"
-          .ps-4.pe-4.pt-4
+          = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "ps-4 pe-4 pt-4"}) do |f|
             .mb-2
-              input.form-control(type='email' placeholder='Email')
+              = f.email_field :email, class: "form-control", placeholder: "Email"
             .input-group.mb-4
-              input.form-control(type='password' placeholder='Password')
+              = f.password_field :password, class: "form-control", placeholder: "Password"
               button#pass.btn.btn-outline-secondary(type='button') Show
             .d-grid.gap-2.mb-4
               button.btn.btn-blue.fw-bolder Log In
