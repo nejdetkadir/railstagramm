@@ -3,5 +3,5 @@ class Post < ApplicationRecord
 
   mount_uploader :image, PostUploader
 
-  validates_presence_of :image
+  validates_presence_of :image, message: "can not be blank"
 end
