@@ -2,7 +2,7 @@
   .card-header.d-flex.justify-content-between.align-items-center
     .d-flex
       = image_tag post.user.profile_url(:small), class: "profile-pic"
-      = link_to post.user.username, root_path, class: "fw-bold ps-2 text-dark text-decoration-none"
+      = link_to post.user.username, admin_user_path(post.user), class: "fw-bold ps-2 text-dark text-decoration-none"
     = icon('fas', 'ellipsis-h', class: "cursorable")
   .card-body.text-center
     = image_tag post.image_url(:medium), class: "img-fluid"

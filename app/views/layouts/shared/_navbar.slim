@@ -18,7 +18,7 @@ header.py-3.mb-4.border-bottom.bg-white.fixed-top
           = image_tag current_user.profile_url(:small), class: "rounded-circle profile-pic"
         ul.dropdown-menu.text-small(aria-labelledby='dropdownUser')
           li
-            = link_to "Profile", admin_profile_path, class: "dropdown-item"
+            = link_to "Profile", admin_user_path(current_user), class: "dropdown-item"
           li
             a.dropdown-item(href='#') Saved
           li
