@@ -1,0 +1,27 @@
+button.btn.btn-lg.btn-blue(type='button' data-bs-toggle='modal' data-bs-target='#newPostModal')
+  = icon('fas', 'plus')
+#newPostModal.modal.fade(tabindex='-1' aria-labelledby='newPostModalLabel' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered
+    = form_for(Post.new, url: admin_posts_path, html: {class: "modal-content"}) do |f|
+      .modal-header
+        h5#newPostModalLabel.modal-title New Post
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body
+        .text-center.mb-3
+          img.img-thumbnail.d-none
+        .mb-3
+          = f.file_field :image, class: "form-control form-control-sm"
+        = f.text_area :description, class: "form-control", placeholder: "Enter description..."
+      .modal-footer
+        button.btn.btn-app.btn-sm(type='button' data-bs-dismiss='modal') Close
+        = f.submit "Share", class: "btn btn-blue btn-sm"
+= content_for :js do
+  javascript:
+    document.addEventListener("turbolinks:load", function() {
+      if (document.body.contains(document.getElementById("post_image"))) {
+        document.getElementById("post_image").addEventListener('change', function(e) {
+          e.path[2].querySelector('img').classList.remove('d-none')
+          e.path[2].querySelector('img').setAttribute('src', URL.createObjectURL(e.target.files[0]))
+        })
+      }
+    })
