@@ -195,6 +195,11 @@ button[data-bs-target="#newPostModal"]{
   border-left: 1px solid #dee2e6!important;
 }
 
+img.profile-pic{
+  border-radius: 50%;
+  border: 0.5px solid #1795f6;
+}
+
 @media only screen and (max-width: 600px) {
   .d-none-mobile{
     display: none !important;

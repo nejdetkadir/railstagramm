@@ -38,6 +38,9 @@ gem 'slim'
 gem 'carrierwave', '~> 2.0'
 gem "mini_magick"
 
+gem 'ruby-progressbar'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

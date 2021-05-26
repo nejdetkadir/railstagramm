@@ -8,7 +8,7 @@
       .mt-5.position-fixed
         .d-flex.justify-content-between.align-items-center
           .d-flex.justify-content-start.align-items-center
-            = image_tag current_user.profile_url(:medium)
+            = image_tag current_user.profile_url(:medium), class: "profile-pic"
             .d-block.ps-3
               .fw-bold nejdetkadirr
               .text-muted Nejdet Kadir Bektaş
@@ -20,8 +20,8 @@
           - @users.each do |user|
             .d-flex.justify-content-between.align-items-center.mt-2.small-user
               .d-flex.justify-content-start.align-items-center
-                = image_tag user.profile_url(:medium), height: "32"
+                = image_tag user.profile_url(:medium), height: "32", class: "profile-pic"
                 .d-block.ps-3
-                  = link_to "nejdetkadirr", root_path, class: "fw-bold text-decoration-none text-dark"
+                  = link_to user.username, root_path, class: "fw-bold text-decoration-none text-dark"
               = link_to "Follow", root_path, class: "btn btn-link fw-bold text-decoration-none"
         .mt-4.text-muted.fw-light #{Time.now.year} © INSTAGRAM CLONE

@@ -10,7 +10,7 @@
               .user
                 .d-flex.justify-content-between.align-items-center.p-3
                   .d-flex.justify-content-start.align-items-center
-                    = image_tag @post.user.profile_url(:small)
+                    = image_tag @post.user.profile_url(:small), class: "profile-pic"
                     = link_to @post.user.username, root_path, class: "fw-bold ps-2 text-dark text-decoration-none"
                   = icon('fas', 'ellipsis-h', class: "cursorable")
               .border-bottom

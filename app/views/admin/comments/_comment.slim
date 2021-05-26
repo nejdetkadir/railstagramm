@@ -1,6 +1,6 @@
 .comment.d-flex.justify-content-start.align-items-center.p-3
   .d-flex.justify-content-start
-    = image_tag user.profile_url(:small), height: "25"
+    = image_tag user.profile_url(:small), height: "25", class: "profile-pic"
     .fw-normal.ps-2
       = link_to user.username, root_path, class: "fw-bold text-dark text-decoration-none pe-2"
       = comment

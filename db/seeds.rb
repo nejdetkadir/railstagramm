@@ -5,3 +5,29 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+progress_bar = ProgressBar.create(:title => "Seed data", :starting_at => 0, :total => 10)
+
+10.times do |user|
+  progress_bar&.increment
+  User.create(
+    email: Faker::Internet.email,
+    password: "123456789",
+    password_confirmation: "123456789",
+    fullname: Faker::Name.name_with_middle,
+    username: Faker::Name.first_name.downcase,
+    bio: Faker::Lorem.sentence,
+    website: Faker::Internet.url,
+    remote_profile_url: Faker::Avatar.image,
+    gender: Faker::Gender.binary_type,
+    birthday: Faker::Date.between(from: 20.years.ago, to: Date.today)
+  )
+  
+  4.times do |post|
+    Post.create(
+      remote_image_url: Faker::LoremFlickr.image(size: "1000x1000"),
+      description: Faker::Lorem.sentence,
+      user_id: User.last.id
+    )
+  end
+end
