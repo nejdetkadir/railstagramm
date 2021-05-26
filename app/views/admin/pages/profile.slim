@@ -37,14 +37,13 @@
         #nav-tabContent.tab-content
           #nav-posts.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='nav-posts-tab')
             .row.mt-3
-              - 9.times do
-                = render "admin/posts/small_post"
+              - current_user.posts.each do |p|
+                = render "admin/posts/small_post", post: p
           #nav-videos.tab-pane.fade(role='tabpanel' aria-labelledby='nav-videos-tab')
             .row.mt-3
-              - 9.times do
+              /- 9.times do
                 = render "admin/posts/small_post"
           #nav-bookmarks.tab-pane.fade(role='tabpanel' aria-labelledby='nav-bookmarks-tab')
             .row.mt-3
-              - 9.times do
+              /- 9.times do
                 = render "admin/posts/small_post"
-    .text-center.mt-5.text-muted.mb-5 #{Time.now.year} © INSTAGRAM CLONE

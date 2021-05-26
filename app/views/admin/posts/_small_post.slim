@@ -1,4 +1,4 @@
-= link_to admin_profile_path, class: "col-md-4" do
+= link_to admin_post_path(post), class: "col-md-4" do
   .card.post.mb-3.cursorable.mini-post
     .card-body
       .info
@@ -9,4 +9,4 @@
           .d-block.align-items-center
             = icon('fas', 'comment', class: "fs-6 pe-1")
             | 59
-      = image_tag "https://via.placeholder.com/1080x1080", class: "img-fluid"
+      = image_tag post.image_url(:thumb), class: "img-fluid"
