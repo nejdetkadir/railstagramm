@@ -31,4 +31,12 @@ class User < ApplicationRecord
     end
     user
   end
+
+  def followers 
+    Friendship.where(friend_id: self.id, status: 2)
+  end
+
+  def following
+    self.friendships.where(status: 2)
+  end
 end
