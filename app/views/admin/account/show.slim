@@ -7,8 +7,12 @@
         .col-md-6
           .d-flex.justify-content-between.align-items-center
             .fw-normal.fs-4 #{@user.username}
-            = icon('fas', 'cog', class: "fs-4 cursorable")
-            button.btn.btn-app.fw-bold.btn-sm Edit profile
+            - if check_me(@user)
+              = icon('fas', 'cog', class: "fs-4 cursorable")
+              button.btn.btn-app.fw-bold.btn-sm Edit profile
+            - else
+              = link_to "Follow", admin_user_path(@user), class: "btn btn-blue btn-sm"
+              = icon('fas', 'ellipsis-h', class: "fs-4 cursorable")
           .d-flex.justify-content-between.align-items-center.mt-3
             .d-flex
               .fw-bolder.pe-1 8
@@ -21,7 +25,7 @@
               | following
           .fw-bold.fs-6.mt-3 #{@user.fullname}
           .fw-light.bio.mt-1 #{@user.bio}
-          = link_to @user.website, root_path, class: "fw-bold mt-1 website"
+          = link_to @user.website, @user.website, class: "fw-bold mt-1 website", target: "_blank"
       .mt-5
         nav
           #nav-tab.nav.nav-tabs.nav-fill(role='tablist')

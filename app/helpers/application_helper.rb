@@ -14,4 +14,12 @@ module ApplicationHelper
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
+
+  def check_me(user)
+    if user_signed_in?
+      current_user.eql?(user)
+    else
+      false
+    end
+  end
 end
