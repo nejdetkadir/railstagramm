@@ -3,7 +3,7 @@
     .col-md-8.mx-auto.mt-4
       .row.align-items-center
         .col-md-3.text-center
-          = image_tag "default_profile", height: "150"
+          = image_tag current_user.profile_url(:large), height: "150"
         .col-md-6
           .d-flex.justify-content-between.align-items-center
             .fw-normal.fs-4 nejdetkadirr

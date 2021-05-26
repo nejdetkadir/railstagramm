@@ -5,12 +5,12 @@
         .card-body.p-0
           .row
             .col-md-8.text-center
-              = image_tag @post.image_url, class: "img-fluid" 
+              = image_tag @post.image_url(:medium), class: "img-fluid" 
             .col-md-4.border-left
               .user
                 .d-flex.justify-content-between.align-items-center.p-3
                   .d-flex.justify-content-start.align-items-center
-                    = image_tag "default_profile_small"
+                    = image_tag @post.user.profile_url(:small)
                     = link_to @post.user.username, root_path, class: "fw-bold ps-2 text-dark text-decoration-none"
                   = icon('fas', 'ellipsis-h', class: "cursorable")
               .border-bottom
@@ -26,7 +26,7 @@
                       = icon('fas', 'location-arrow ps-3', class: "cursorable")
                     = icon('far', 'bookmark', class: "cursorable")
                   .fw-bold 55 likes
-                  .mt-2.fw-light.post-time 44 MINUTES AGO 
+                  .mt-2.fw-light.post-time #{time_ago_in_words(@post.created_at).capitalize} ago
         .card-footer.comment-area
           .input-group
             textarea.form-control(type='text' placeholder="Add a comment..." rows="1")

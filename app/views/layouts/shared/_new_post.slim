@@ -1,7 +1,7 @@
 button.btn.btn-lg.btn-blue(type='button' data-bs-toggle='modal' data-bs-target='#newPostModal')
   = icon('fas', 'plus')
 #newPostModal.modal.fade(tabindex='-1' aria-labelledby='newPostModalLabel' aria-hidden='true')
-  .modal-dialog.modal-dialog-centered
+  .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
     = form_for(Post.new, url: admin_posts_path, html: {class: "modal-content"}) do |f|
       .modal-header
         h5#newPostModalLabel.modal-title New Post

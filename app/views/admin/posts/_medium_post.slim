@@ -1,11 +1,11 @@
 .card.mb-5.post
   .card-header.d-flex.justify-content-between.align-items-center
     .d-flex
-      = image_tag "default_profile_small.png"
-      = link_to "testuser1", root_path, class: "fw-bold ps-2 text-dark text-decoration-none"
+      = image_tag post.user.profile_url(:small)
+      = link_to post.user.username, root_path, class: "fw-bold ps-2 text-dark text-decoration-none"
     = icon('fas', 'ellipsis-h', class: "cursorable")
-  .card-body
-    img.img-fluid(src="https://via.placeholder.com/960x360")
+  .card-body.text-center
+    = image_tag post.image_url(:medium), class: "img-fluid"
   .card-footer
     .d-flex.justify-content-between.fs-3.mb-2
       .d-flex.justify-content-between
@@ -19,7 +19,7 @@
         .d-flex.justify-content-start
           = link_to "testuer1", root_path, class: "fw-bold text-decoration-none text-dark"
           .fw-normal.ps-2 lorem ipsum dolor sit amet
-    .mt-2.fw-light.post-time 44 MINUTES AGO 
+    .mt-2.fw-light.post-time #{time_ago_in_words(post.created_at).capitalize} ago
   .card-footer.comment-area
     .input-group
       textarea.form-control(type='text' placeholder="Add a comment..." rows="1")
