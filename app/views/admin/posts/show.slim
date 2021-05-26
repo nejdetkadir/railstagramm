@@ -1,0 +1,53 @@
+.container
+  .row
+    .col-md-12.col-sm-12.col-lg-10.mx-auto.mt-4.mb-5
+      .card.lg-post.post
+        .card-body.p-0
+          .row
+            .col-md-8.text-center
+              = image_tag @post.image_url, class: "img-fluid" 
+            .col-md-4.border-left
+              .user
+                .d-flex.justify-content-between.align-items-center.p-3
+                  .d-flex.justify-content-start.align-items-center
+                    = image_tag "default_profile_small"
+                    = link_to @post.user.username, root_path, class: "fw-bold ps-2 text-dark text-decoration-none"
+                  = icon('fas', 'ellipsis-h', class: "cursorable")
+              .border-bottom
+              .comments.overflow-auto.d-none-mobile
+                = render "admin/comments/comment", user: @post.user, comment: @post.description                  
+              #bottom-area
+                .border-bottom
+                .p-2
+                  .d-flex.justify-content-between.fs-3.mb-2
+                    .d-flex.justify-content-between
+                      = icon('far', 'heart', class: "cursorable")
+                      = icon('far', 'comment ps-3', class: "cursorable")
+                      = icon('fas', 'location-arrow ps-3', class: "cursorable")
+                    = icon('far', 'bookmark', class: "cursorable")
+                  .fw-bold 55 likes
+                  .mt-2.fw-light.post-time 44 MINUTES AGO 
+        .card-footer.comment-area
+          .input-group
+            textarea.form-control(type='text' placeholder="Add a comment..." rows="1")
+            button.btn.btn-link.text-decoration-none.fw-bold(type='button') Post
+= content_for :js do
+  javascript:
+    document.addEventListener("turbolinks:load", function() {
+      if (document.body.contains(document.getElementById("bottom-area"))) {
+        document.querySelector('img.img-fluid').addEventListener('load', function() {
+          setHeight()
+        })
+        setHeight()
+      }
+
+      function setHeight() {
+        if (parseInt(document.querySelector('.comments').style.height) != (document.querySelector('.img-fluid').scrollHeight - document.getElementById('bottom-area').scrollHeight - document.querySelector('.user').scrollHeight)) {
+          if (document.querySelector('.img-fluid').scrollHeight > 270) {
+            document.querySelector('.comments').style.height = (document.querySelector('.img-fluid').scrollHeight - document.getElementById('bottom-area').scrollHeight - document.querySelector('.user').scrollHeight) + "px"
+          } else {
+            document.querySelector('.comments').style.height = "270px"
+          }
+        }
+      }
+    })

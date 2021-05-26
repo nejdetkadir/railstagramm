@@ -5,6 +5,9 @@ module Admin
     def edit
     end
 
+    def show
+    end
+
     def create
       @post = Post.new(post_params)
       @post.user = current_user

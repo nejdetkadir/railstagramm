@@ -177,6 +177,23 @@ button[data-bs-target="#newPostModal"]{
   box-shadow: 0px 5px 15px #666;
 }
 
+.lg-post{
+
+  .row{
+    --bs-gutter-x: 0rem !important; 
+  }
+
+  .col-md-4{
+    a.text-dark:hover{
+      color: black;
+      text-decoration: underline !important;
+    }
+  }
+}
+
+.border-left{
+  border-left: 1px solid #dee2e6!important;
+}
 
 @media only screen and (max-width: 600px) {
   .d-none-mobile{
