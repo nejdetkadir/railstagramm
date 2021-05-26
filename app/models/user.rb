@@ -7,6 +7,8 @@ class User < ApplicationRecord
   validates_presence_of [:fullname, :birthday, :username]
   validates_uniqueness_of :username
 
+  mount_uploader :profile, ProfileUploader
+
   has_many :posts
 
   def self.from_omniauth(access_token)
