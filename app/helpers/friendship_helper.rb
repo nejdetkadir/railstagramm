@@ -12,8 +12,8 @@ module FriendshipHelper
     end
   end
 
-  def decline_follow_request(friend_id)
-    friendship = Friendship.where(user_id: current_user.id, friend_id: friend_id, status: 1).first
+  def delete_follow_request(friend_id)
+    friendship = Friendship.where(user_id: friend_id, friend_id: current_user.id, status: 1).first
 
     if friendship
       friendship.destroy
@@ -21,7 +21,11 @@ module FriendshipHelper
   end
 
   def check_follow_request(friend_id)
-    !Friendship.where(user_id: current_user.id, friend_id: friend_id, status: 1).first
+    if !current_user.eql?(User.find(friend_id))
+      !Friendship.where(user_id: current_user.id, friend_id: friend_id, status: 1).first
+    else
+      return false
+    end
   end
 
   def friends_with?(friend_id)
@@ -62,7 +66,21 @@ module FriendshipHelper
     end
   end
 
-  def accept_friend_request(friend_id)
+  def check_pending(friend_id)
+    unless Friendship.where(user_id: current_user.id, friend_id: friend_id, status: 1).first
+      return false
+    end
+
+    return true
+  end
+
+  def remove_pending_request(friend_id)
+    if check_pending(friend_id)
+      Friendship.where(user_id: current_user.id, friend_id: friend_id, status: 1).first.destroy
+    end
+  end
+
+  def accept_follow_request(friend_id)
     friendship = Friendship.where(user_id: friend_id, friend_id: current_user.id, status: 1).first
     friendship.status = 2
     friendship.save

@@ -1,0 +1,17 @@
+#followRequestModal.modal.fade(tabindex='-1' aria-labelledby='followRequestModalLabel' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
+    .modal-content
+      .modal-header
+        h5#followRequestModalLabel.modal-title.text-center Follow Requests
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body
+        - current_user.follow_requests.each do |user|
+          .d-flex.justify-content-between.align-items-center.mt-2.small-user
+            .d-flex.justify-content-start.align-items-center
+              = image_tag user.user.profile_url(:medium), height: "32", class: "profile-pic"
+              .d-block.ps-3
+                = link_to user.user.username, admin_user_path(user.user), class: "fw-bold text-decoration-none text-dark"
+                //.fw-normal.fs-6 #{user.user.fullname}
+            .d-flex
+              = link_to "Confirm", admin_accept_follow_request_path(user.user), class: "btn btn-blue fw-bold text-decoration-none me-1 btn-sm", method: :post
+              = link_to "Delete", admin_delete_follow_request_path(user.user), class: "btn btn-app fw-bold text-decoration-none btn-sm", method: :delete

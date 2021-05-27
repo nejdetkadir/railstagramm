@@ -39,4 +39,8 @@ class User < ApplicationRecord
   def following
     self.friendships.where(status: 2)
   end
+
+  def follow_requests
+    Friendship.where(friend_id: self.id, status: 1)
+  end
 end

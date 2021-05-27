@@ -11,7 +11,7 @@ header.py-3.mb-4.border-bottom.bg-white.fixed-top
         = icon('fab', 'facebook-messenger', class: "text-dark pe-1-mobile")
       = link_to admin_feed_path do
         = icon('fas', 'compass', class: "text-dark pe-1-mobile")
-      = link_to admin_feed_path do
+      button.d-flex.cursorable.follow-btn(type='button' data-bs-toggle='modal' data-bs-target='#followRequestModal')
         = icon('fas', 'heart', class: "text-dark pe-1-mobile")
       .dropdown
         a#dropdownUser.d-block.link-dark.text-decoration-none.dropdown-toggle(href='#' data-bs-toggle='dropdown' aria-expanded='false')

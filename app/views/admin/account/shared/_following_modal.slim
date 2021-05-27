@@ -1,0 +1,9 @@
+#followingModal.modal.fade(tabindex='-1' aria-labelledby='followingModalLabel' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
+    .modal-content
+      .modal-header
+        h5#followingModalLabel.modal-title.text-center Following
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body
+        - user.following.each do |user|
+          = render "admin/account/shared/user", user: user.friend

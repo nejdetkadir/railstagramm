@@ -1,6 +1,6 @@
 .container
   .row
-    .col-md-8.mx-auto.mt-4
+    .col-md-12.col-sm-12.col-lg-8.mx-auto.mt-4
       .row.align-items-center
         .col-md-3.text-center
           = image_tag @user.profile_url(:large), height: "150", class: "profile-pic"
@@ -11,17 +11,22 @@
               = icon('fas', 'cog', class: "fs-4 cursorable")
               button.btn.btn-app.fw-bold.btn-sm Edit profile
             - else
-              = link_to "Follow", admin_user_path(@user), class: "btn btn-blue btn-sm"
+              - if friends_with?(@user.id)
+                = link_to "Following", admin_delete_following_path(@user), class: "btn btn-app btn-sm", id: "flw", method: :delete
+              - elsif check_pending(@user.id)
+                = link_to "Pending", admin_delete_pending_request_path(@user), class: "btn btn-app btn-sm", id: "flw", method: :delete
+              - else
+                = link_to "Follow", admin_send_follow_request_path(@user), class: "btn btn-blue btn-sm", id: "flw", method: :post
               = icon('fas', 'ellipsis-h', class: "fs-4 cursorable")
           .d-flex.justify-content-between.align-items-center.mt-3
             .d-flex
-              .fw-bolder.pe-1 8
+              .fw-bolder.pe-1 #{@user.posts.count}
               | posts
-            .d-flex.cursorable
-              .fw-bolder.pe-1 233
+            button.d-flex.cursorable.follow-btn(type='button' data-bs-toggle='modal' data-bs-target='#followersModal')
+              .fw-bolder.pe-1 #{@user.followers.count}
               | followers
-            .d-flex.cursorable
-              .fw-bolder.pe-1 563
+            button.d-flex.cursorable.follow-btn(type='button' data-bs-toggle='modal' data-bs-target='#followingModal')
+              .fw-bolder.pe-1 #{@user.following.count}
               | following
           .fw-bold.fs-6.mt-3 #{@user.fullname}
           .fw-light.bio.mt-1 #{@user.bio}
@@ -51,3 +56,5 @@
             .row.mt-3
               /- 9.times do
                 = render "admin/posts/small_post"
+= render "admin/account/shared/following_modal", user: @user
+= render "admin/account/shared/followers_modal", user: @user
