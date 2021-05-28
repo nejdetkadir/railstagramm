@@ -9,9 +9,11 @@ module Admin
       @like = PostLike.new
       @like.user = current_user
       @like.post = @post
-  
-      if !@like.save
-        flash[:alert] = @like.errors.full_messages.first
+
+      if !liked_post(@post)
+        if !@like.save
+          flash[:alert] = @like.errors.full_messages.first
+        end
       end
 
       redirect_to admin_post_path(@post)

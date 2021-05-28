@@ -22,16 +22,7 @@
                 .border-bottom
                 .p-2
                   .d-flex.justify-content-between.fs-3.mb-2.align-items-center
-                    .d-flex.justify-content-between.align-items-center
-                      - if !liked_post(@post)
-                        = link_to admin_post_post_likes_path(@post), method: :post do
-                          = icon('far', 'heart', class: "cursorable text-dark")
-                      - else
-                        = link_to admin_post_post_like_path(@post, liked_post(@post)), method: :delete do
-                          = icon('fas', 'heart', class: "cursorable liked ")
-                      = icon('far', 'comment ps-3', class: "cursorable")
-                      = icon('fas', 'location-arrow ps-3', class: "cursorable")
-                    = icon('far', 'bookmark', class: "cursorable")
+                    = render "admin/posts/actions", post: @post
                   .fw-bold #{@post.post_likes.count} likes
                   .mt-2.fw-light.post-time #{time_ago_in_words(@post.created_at).capitalize} ago
         .card-footer.comment-area

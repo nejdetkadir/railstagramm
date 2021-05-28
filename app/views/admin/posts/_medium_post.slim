@@ -8,11 +8,7 @@
     = image_tag post.image_url(:medium), class: "img-fluid"
   .card-footer
     .d-flex.justify-content-between.fs-3.mb-2
-      .d-flex.justify-content-between
-        = icon('far', 'heart', class: "cursorable")
-        = icon('far', 'comment ps-3', class: "cursorable")
-        = icon('fas', 'location-arrow ps-3', class: "cursorable")
-      = icon('far', 'bookmark', class: "cursorable")
+      = render "admin/posts/actions", post: post
     .fw-bold 55 likes
     .comments.mt-2
       = render "admin/comments/small_comment", user: post.user, comment: post.description
