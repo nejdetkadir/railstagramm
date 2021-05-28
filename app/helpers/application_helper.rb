@@ -22,4 +22,8 @@ module ApplicationHelper
       false
     end
   end
+
+  def liked_post(post)
+    post.post_likes.where(user_id: current_user.id, post_id: post.id).first
+  end
 end
