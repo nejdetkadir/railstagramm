@@ -4,7 +4,7 @@
       = image_tag post.user.profile_url(:small), class: "profile-pic"
       = link_to post.user.username, admin_user_path(post.user), class: "fw-bold ps-2 text-dark text-decoration-none"
     = icon('fas', 'ellipsis-h', class: "cursorable")
-  .card-body.text-center
+  = link_to admin_post_path(post), class: "card-body text-center" do
     = image_tag post.image_url(:medium), class: "img-fluid"
   .card-footer
     .d-flex.justify-content-between.fs-3.mb-2
@@ -15,12 +15,11 @@
       = icon('far', 'bookmark', class: "cursorable")
     .fw-bold 55 likes
     .comments.mt-2
-      - 3.times do
-        .d-flex.justify-content-start
-          = link_to "testuer1", root_path, class: "fw-bold text-decoration-none text-dark"
-          .fw-normal.ps-2 lorem ipsum dolor sit amet
+      = render "admin/comments/small_comment", user: post.user, comment: post.description
+      - post.post_comments.limit(3).each do |comment|
+        = render "admin/comments/small_comment", user: comment.user, comment: comment.body
     .mt-2.fw-light.post-time #{time_ago_in_words(post.created_at).capitalize} ago
   .card-footer.comment-area
-    .input-group
-      textarea.form-control(type='text' placeholder="Add a comment..." rows="1")
-      button.btn.btn-link.text-decoration-none.fw-bold(type='button') Post
+    = form_for(PostComment.new, html: {class: "input-group", id: "comment-#{post.id}-form"}, url: admin_post_post_comments_path(post)) do |f|
+      = f.text_area :body, class: "form-control", placeholder: "Add a comment...", rows: 1, id: "comment-#{post.id}-body"
+      = f.submit "Post", class: "btn btn-link text-decoration-none fw-bold"

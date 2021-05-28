@@ -1,0 +1,7 @@
+#commentModal.modal.fade(tabindex='-1' aria-labelledby='commentModalLabel' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .modal-body.p-0
+        ul.list-group
+          = link_to "Delete", admin_post_post_comment_path(@post, @post.post_comments.first), class: "list-group-item text-danger text-center fw-bold", id: "delete-comment",method: :delete
+          a.list-group-item.text-center.fw-bold.text-dark.cursorable(data-bs-dismiss="modal") Cancel

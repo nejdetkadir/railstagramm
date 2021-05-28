@@ -15,7 +15,9 @@
                   = icon('fas', 'ellipsis-h', class: "cursorable")
               .border-bottom
               .comments.overflow-auto.d-none-mobile
-                = render "admin/comments/comment", user: @post.user, comment: @post.description                  
+                = render "admin/comments/comment", user: @post.user, comment: @post.description
+                - @post.post_comments.each do |comment|
+                 = render "admin/comments/comment", user: comment.user, comment: comment.body, id: comment.id, post_user: @post.user
               #bottom-area
                 .border-bottom
                 .p-2
@@ -28,13 +30,23 @@
                   .fw-bold 55 likes
                   .mt-2.fw-light.post-time #{time_ago_in_words(@post.created_at).capitalize} ago
         .card-footer.comment-area
-          .input-group
-            textarea.form-control(type='text' placeholder="Add a comment..." rows="1")
-            button.btn.btn-link.text-decoration-none.fw-bold(type='button') Post
+          = form_for(PostComment.new, html: {class: "input-group"}, url: admin_post_post_comments_path(@post)) do |f|
+            = f.text_area :body, class: "form-control", placeholder: "Add a comment...", rows: 1
+            = f.submit "Post", class: "btn btn-link text-decoration-none fw-bold"
+- if @post.post_comments.count > 0
+  = render "admin/comments/comment_modal"
 = content_for :js do
   javascript:
     document.addEventListener("turbolinks:load", function() {
       if (document.body.contains(document.getElementById("bottom-area"))) {
+        document.querySelectorAll('i[data-bs-target="#commentModal"').forEach(item => {
+          item.addEventListener('click', function(e) {
+            if (e.path[3].getAttribute('data-id') != null) {
+              document.getElementById("delete-comment").href = document.getElementById("delete-comment").href.replace(/.$/, e.path[3].getAttribute('data-id'))
+            }
+          })
+        })
+
         document.querySelector('img.img-fluid').addEventListener('load', function() {
           setHeight()
         })
