@@ -32,12 +32,17 @@
     document.addEventListener("turbolinks:load", function() {
       if (document.body.contains(document.getElementById("pass"))) {
         document.getElementById("pass").addEventListener('click', function(e) {
-          if (e.path[1].childNodes[0].type == "password") {
-            e.path[1].childNodes[0].type = "text"
-            e.target.innerText = "Hide"
-          } else {
-            e.path[1].childNodes[0].type = "password"
-            e.target.innerText = "Show"
+
+          if (e.path[1].childNodes[0].getAttribute("last-modified") != document.lastModified) {
+            if (e.path[1].childNodes[0].type == "password") {
+              e.path[1].childNodes[0].type = "text"
+              e.target.innerText = "Hide"
+            } else {
+              e.path[1].childNodes[0].type = "password"
+              e.target.innerText = "Show"
+            }
+
+            e.path[1].childNodes[0].setAttribute("last-modified", document.lastModified)
           }
         })
       }
