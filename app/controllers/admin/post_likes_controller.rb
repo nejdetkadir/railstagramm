@@ -11,22 +11,19 @@ module Admin
       @like.post = @post
 
       if !liked_post(@post)
-        if !@like.save
-          flash[:alert] = @like.errors.full_messages.first
-        end
+        @like.save
       end
 
-      redirect_to admin_post_path(@post)
+      render json: @like
     end
 
     def destroy
       if check_me(@like.user)
         @like.destroy
+        render json: {status: true}
       else
-        flash[:alert] = "Something went wrong."
+        render json: {status: false}
       end
-
-      redirect_to admin_post_path(@post)
     end
 
     private

@@ -17,3 +17,45 @@ global.toastr = require("toastr")
 
 global.axios = require("axios")
 axios.defaults.headers.common['X-CSRF-Token'] = document.querySelector('meta[name=csrf-token]').content
+axios.defaults.headers.common['Accept'] = 'application/json'
+axios.defaults.baseURL = window.location.origin
+
+document.addEventListener("turbolinks:load", function() {
+  document.querySelectorAll('i.fa-heart[dataid]').forEach(item => {
+    item.addEventListener('click', (e) => {
+      if (e.target.classList.contains('liked')) {
+        unlikePost(e)
+      } else {
+        likePost(e)
+      }
+    })
+  })
+})
+
+function likePost(e) {
+  axios.post(`/posts/${e.target.getAttribute('dataid')}/post_likes`).then(res => {
+    if (res.data.id != null) {
+      e.target.classList.remove('far')
+      e.target.classList.add('fas')
+      e.target.classList.remove('text-dark')
+      e.target.classList.add('liked')
+      e.target.setAttribute('likeid', res.data.id)
+    }
+  }).catch(err => {
+    toastr.error('Something went wrong!')
+  })
+}
+
+function unlikePost(e) {
+  axios.delete(`/posts/${e.target.getAttribute('dataid')}/post_likes/${e.target.getAttribute('likeid')}`).then(res => {
+    if (res.data.status) {
+      e.target.classList.add('far')
+      e.target.classList.remove('fas')
+      e.target.classList.add('text-dark')
+      e.target.classList.remove('liked')
+      e.target.removeAttribute('likeid')
+    }
+  }).catch(err => {
+    toastr.error('Something went wrong!')
+  })
+}
