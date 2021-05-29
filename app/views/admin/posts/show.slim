@@ -38,7 +38,9 @@
         document.querySelectorAll('i[data-bs-target="#commentModal"').forEach(item => {
           item.addEventListener('click', function(e) {
             if (e.path[3].getAttribute('data-id') != null) {
-              document.getElementById("delete-comment").href = document.getElementById("delete-comment").href.replace(/.$/, e.path[3].getAttribute('data-id'))
+              let url = document.getElementById("delete-comment").href.split("/")
+              url[document.getElementById("delete-comment").href.split("/").length-1] = e.path[3].getAttribute('data-id')
+              document.getElementById("delete-comment").href = url.toString().replaceAll(",", "/")
             }
           })
         })
