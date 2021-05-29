@@ -8,7 +8,7 @@
           .d-flex.justify-content-between.align-items-center
             .fw-normal.fs-4 #{@user.username}
             - if check_me(@user)
-              = icon('fas', 'cog', class: "fs-4 cursorable")
+              i.fas.fa-cog.fs-4.cursorable(data-bs-toggle="modal" data-bs-target="#userSettingsMiniModal")
               button.btn.btn-app.fw-bold.btn-sm Edit profile
             - else
               - if friends_with?(@user.id)
@@ -58,3 +58,4 @@
                   = render "admin/posts/small_post", post: p.post
 = render "admin/account/shared/following_modal", user: @user
 = render "admin/account/shared/followers_modal", user: @user
+= render "admin/account/shared/mini_settings"
