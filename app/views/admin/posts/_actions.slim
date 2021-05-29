@@ -7,4 +7,9 @@
       = icon('fas', 'heart', class: "cursorable liked ")
   = icon('far', 'comment ps-3', class: "cursorable")
   = icon('fas', 'location-arrow ps-3', class: "cursorable")
-= icon('far', 'bookmark', class: "cursorable")
+- if !saved_post(post)
+  = link_to admin_post_saved_posts_path(post), method: :post do
+    = icon('far', 'bookmark', class: "cursorable text-dark")
+- else
+  = link_to admin_post_saved_post_path(post, saved_post(post)), method: :delete do
+    = icon('fas', 'bookmark', class: "cursorable text-dark")

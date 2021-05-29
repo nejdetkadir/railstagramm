@@ -26,4 +26,8 @@ module ApplicationHelper
   def liked_post(post)
     post.post_likes.where(user_id: current_user.id, post_id: post.id).first
   end
+
+  def saved_post(post)
+    post.saved_posts.where(user_id: current_user.id, post_id: post.id).first
+  end
 end

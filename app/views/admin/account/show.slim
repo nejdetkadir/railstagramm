@@ -40,9 +40,10 @@
             button#nav-videos-tab.nav-link(data-bs-toggle='tab' data-bs-target='#nav-videos' type='button' role='tab' aria-controls='nav-videos' aria-selected='false')
               = icon('fas', 'film', class: "pe-1")
               | VIDEOS
-            button#nav-bookmarks-tab.nav-link(data-bs-toggle='tab' data-bs-target='#nav-bookmarks' type='button' role='tab' aria-controls='nav-bookmarks' aria-selected='false')
-              = icon('far', 'bookmark', class: "pe-1")
-              | SAVED
+            - if check_me(@user)
+              button#nav-bookmarks-tab.nav-link(data-bs-toggle='tab' data-bs-target='#nav-bookmarks' type='button' role='tab' aria-controls='nav-bookmarks' aria-selected='false')
+                = icon('far', 'bookmark', class: "pe-1")
+                | SAVED
         #nav-tabContent.tab-content
           #nav-posts.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='nav-posts-tab')
             .row.mt-3
@@ -50,11 +51,10 @@
                 = render "admin/posts/small_post", post: p
           #nav-videos.tab-pane.fade(role='tabpanel' aria-labelledby='nav-videos-tab')
             .row.mt-3
-              /- 9.times do
-                = render "admin/posts/small_post"
-          #nav-bookmarks.tab-pane.fade(role='tabpanel' aria-labelledby='nav-bookmarks-tab')
-            .row.mt-3
-              /- 9.times do
-                = render "admin/posts/small_post"
+          - if check_me(@user)
+            #nav-bookmarks.tab-pane.fade(role='tabpanel' aria-labelledby='nav-bookmarks-tab')
+              .row.mt-3
+                - @user.saved_posts.each do |p|
+                  = render "admin/posts/small_post", post: p.post
 = render "admin/account/shared/following_modal", user: @user
 = render "admin/account/shared/followers_modal", user: @user

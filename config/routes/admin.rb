@@ -13,6 +13,7 @@ authenticate :user do
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
       resources :post_likes, only: [:create, :destroy]
+      resources :saved_posts, only: [:create, :destroy]
     end
   end
 end
