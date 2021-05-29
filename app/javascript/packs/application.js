@@ -30,6 +30,16 @@ document.addEventListener("turbolinks:load", function() {
       }
     })
   })
+
+  document.querySelectorAll('i.fa-bookmark[dataid]').forEach(item => {
+    item.addEventListener('click', (e) => {
+      if (e.target.classList.contains('far')) {
+        savePost(e)
+      } else {
+        unsavePost(e)
+      }
+    })
+  })
 })
 
 function likePost(e) {
@@ -64,4 +74,28 @@ function unlikePost(e) {
 
 function changeLikeCount(id, count) {
   document.querySelector(`.like-count[dataid="${id}"]`).innerHTML = count + " likes"
+}
+
+function savePost(e) {
+  axios.post(`/posts/${e.target.getAttribute('dataid')}/saved_posts`).then(res => {
+    if (res.data.id != null) {
+      e.target.classList.remove('far')
+      e.target.classList.add('fas')
+      e.target.setAttribute('saveid', res.data.id)
+    }
+  }).catch(err => {
+    toastr.error('Something went wrong!')
+  })
+}
+
+function unsavePost(e) {
+  axios.delete(`/posts/${e.target.getAttribute('dataid')}/saved_posts/${e.target.getAttribute('saveid')}`).then(res => {
+    if (res.data.status) {
+      e.target.classList.add('far')
+      e.target.classList.remove('fas')
+      e.target.removeAttribute('saveid')
+    }
+  }).catch(err => {
+    toastr.error('Something went wrong!')
+  })
 }

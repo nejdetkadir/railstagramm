@@ -6,8 +6,6 @@
   = icon('far', 'comment ps-3', class: "cursorable")
   = icon('fas', 'location-arrow ps-3', class: "cursorable")
 - if !saved_post(post)
-  = link_to admin_post_saved_posts_path(post), method: :post do
-    = icon('far', 'bookmark', class: "cursorable text-dark")
+  = icon('far', 'bookmark', class: "cursorable text-dark", dataId: "#{post.id}")
 - else
-  = link_to admin_post_saved_post_path(post, saved_post(post)), method: :delete do
-    = icon('fas', 'bookmark', class: "cursorable text-dark")
+  = icon('fas', 'bookmark', class: "cursorable text-dark", dataId: "#{post.id}", saveId: saved_post(post).id)

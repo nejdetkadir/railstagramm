@@ -11,22 +11,19 @@ module Admin
       @saved.post = @post
 
       if !saved_post(@post)
-        if !@saved.save
-          flash[:alert] = @saved.errors.full_messages.first
-        end
+        @saved.save
       end
 
-      redirect_to request.referer
+      render json: {id: @saved.id}
     end
 
     def destroy
       if check_me(@saved.user)
         @saved.destroy
+        render json: {status: true}
       else
-        flash[:alert] = "Something went wrong."
+        render json: {status: false}
       end
-
-      redirect_to request.referer
     end
 
     private
