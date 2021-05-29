@@ -40,6 +40,7 @@ function likePost(e) {
       e.target.classList.remove('text-dark')
       e.target.classList.add('liked')
       e.target.setAttribute('likeid', res.data.id)
+      changeLikeCount(e.target.getAttribute('dataid'), res.data.likes)
     }
   }).catch(err => {
     toastr.error('Something went wrong!')
@@ -54,8 +55,13 @@ function unlikePost(e) {
       e.target.classList.add('text-dark')
       e.target.classList.remove('liked')
       e.target.removeAttribute('likeid')
+      changeLikeCount(e.target.getAttribute('dataid'), res.data.likes)
     }
   }).catch(err => {
     toastr.error('Something went wrong!')
   })
+}
+
+function changeLikeCount(id, count) {
+  document.querySelector(`.like-count[dataid="${id}"]`).innerHTML = count + " likes"
 }

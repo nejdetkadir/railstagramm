@@ -14,15 +14,15 @@ module Admin
         @like.save
       end
 
-      render json: @like
+      render json: {id: @like.id, likes: @post.post_likes.count}
     end
 
     def destroy
       if check_me(@like.user)
         @like.destroy
-        render json: {status: true}
+        render json: {status: true, likes: @post.post_likes.count}
       else
-        render json: {status: false}
+        render json: {status: false, likes: @post.post_likes.count}
       end
     end
 

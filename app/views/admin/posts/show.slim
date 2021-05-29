@@ -23,7 +23,7 @@
                 .p-2
                   .d-flex.justify-content-between.fs-3.mb-2.align-items-center
                     = render "admin/posts/actions", post: @post
-                  .fw-bold #{@post.post_likes.count} likes
+                  .fw-bold.like-count(dataid="#{@post.id}") #{@post.post_likes.count} likes
                   .mt-2.fw-light.post-time #{time_ago_in_words(@post.created_at).capitalize} ago
         .card-footer.comment-area
           = form_for(PostComment.new, html: {class: "input-group"}, url: admin_post_post_comments_path(@post)) do |f|

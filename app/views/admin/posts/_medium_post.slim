@@ -9,7 +9,7 @@
   .card-footer
     .d-flex.justify-content-between.fs-3.mb-2
       = render "admin/posts/actions", post: post
-    .fw-bold 55 likes
+    .fw-bold.like-count(dataid="#{post.id}") #{post.post_likes.count} likes
     .comments.mt-2
       = render "admin/comments/small_comment", user: post.user, comment: post.description
       - post.post_comments.limit(3).each do |comment|
