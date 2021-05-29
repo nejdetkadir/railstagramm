@@ -6,6 +6,7 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.2.1",
+    "axios": "^0.21.1",
     "bootstrap": "^5.0.0-beta3",
     "toastr": "^2.1.4",
     "turbolinks": "^5.2.0"

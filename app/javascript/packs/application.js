@@ -14,3 +14,6 @@ ActiveStorage.start()
 
 import "bootstrap/dist/js/bootstrap.bundle"
 global.toastr = require("toastr")
+
+global.axios = require("axios")
+axios.defaults.headers.common['X-CSRF-Token'] = document.querySelector('meta[name=csrf-token]').content
