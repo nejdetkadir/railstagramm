@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_29_003707) do
+ActiveRecord::Schema.define(version: 2021_05_30_150512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,12 @@ ActiveRecord::Schema.define(version: 2021_05_29_003707) do
     t.integer "user_id"
     t.integer "friend_id"
     t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "genders", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -85,10 +91,11 @@ ActiveRecord::Schema.define(version: 2021_05_29_003707) do
     t.string "website"
     t.string "profile"
     t.date "birthday"
-    t.string "gender"
     t.boolean "public", default: true
     t.string "slug"
+    t.bigint "gender_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["gender_id"], name: "index_users_on_gender_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
@@ -100,4 +107,5 @@ ActiveRecord::Schema.define(version: 2021_05_29_003707) do
   add_foreign_key "posts", "users"
   add_foreign_key "saved_posts", "posts"
   add_foreign_key "saved_posts", "users"
+  add_foreign_key "users", "genders"
 end

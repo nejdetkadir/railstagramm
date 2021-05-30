@@ -21,6 +21,8 @@ class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
 
+  belongs_to :gender
+
   def self.from_omniauth(access_token)
     # You can learn which provider used
     # provider = access_token.provider 

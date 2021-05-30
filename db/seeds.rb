@@ -8,6 +8,10 @@
 
 progress_bar = ProgressBar.create(:title => "Seed data", :starting_at => 0, :total => 10)
 
+Gender.create(name: "Male")
+Gender.create(name: "Female")
+Gender.create(name: "Prefer Not To Say")
+
 10.times do |user|
   progress_bar&.increment
   User.create(
@@ -19,7 +23,7 @@ progress_bar = ProgressBar.create(:title => "Seed data", :starting_at => 0, :tot
     bio: Faker::Lorem.sentence,
     website: Faker::Internet.url,
     remote_profile_url: Faker::Avatar.image,
-    gender: Faker::Gender.binary_type,
+    gender_id: Gender.first.id,
     birthday: Faker::Date.between(from: 20.years.ago, to: Date.today)
   )
   
