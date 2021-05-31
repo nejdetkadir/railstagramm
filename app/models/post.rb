@@ -7,4 +7,7 @@ class Post < ApplicationRecord
   mount_uploader :image, PostUploader
 
   validates_presence_of :image, message: "can not be blank"
+
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user } 
 end

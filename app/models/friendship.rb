@@ -6,6 +6,9 @@ class Friendship < ApplicationRecord
   validate :user_is_not_equal_friend
   validates_uniqueness_of :user_id, scope: [:friend_id]
 
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user } 
+
   def is_mutual
     self.friend.friends.include?(self.user)
   end
