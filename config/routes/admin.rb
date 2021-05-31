@@ -10,6 +10,9 @@ authenticate :user do
     delete 'account/:id/delete_following', to: 'account#delete_following', as: 'delete_following'
     delete 'account/:id/delete_pending_request', to: 'account#delete_pending_request', as: 'delete_pending_request'
 
+    get 'users/edit/change-password', to: 'account#change_password', as: 'change_password'
+    get 'users/edit/privacy', to: 'account#privacy', as: 'privacy'
+
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
       resources :post_likes, only: [:create, :destroy]

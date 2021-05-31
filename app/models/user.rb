@@ -23,6 +23,10 @@ class User < ApplicationRecord
 
   belongs_to :gender
 
+  def should_generate_new_friendly_id?
+    username_changed?
+  end
+
   def self.from_omniauth(access_token)
     # You can learn which provider used
     # provider = access_token.provider 

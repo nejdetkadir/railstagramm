@@ -12,6 +12,11 @@ input:focus{
   border-color: #9e9e9e !important;
 }
 
+select:focus{
+  box-shadow: none !important;
+  border-color: #9e9e9e !important;
+}
+
 textarea:focus{
   box-shadow: none !important;
   border-color: #9e9e9e !important;
@@ -233,6 +238,40 @@ img.profile-pic{
 
 i.liked{
   color: #ed4956 !important;
+}
+
+#v-pills-tab {
+  .nav-link{
+    padding: .5rem 1rem !important;
+    font-size: 1rem !important;
+    font-weight: normal !important;
+    border-left: 2px solid transparent;
+    border-radius: 0px !important;
+
+    &.active{
+      border-left: 2px solid black;
+      background-color: transparent !important;
+    }
+
+    &:not(.active):hover {
+      border-left: 2px solid grey !important;
+      color: black;
+      background-color: #fafafa;
+    }
+
+  }
+}
+
+.fs-x-small{
+  font-size: x-small !important;
+}
+
+.fs-small{
+  font-size: small !important;
+}
+
+.row.bsgtr-0{
+  --bs-gutter-x: 0 !important;
 }
 
 @media only screen and (max-width: 600px) {

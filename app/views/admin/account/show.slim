@@ -9,7 +9,7 @@
             .fw-normal.fs-4 #{@user.username}
             - if check_me(@user)
               i.fas.fa-cog.fs-4.cursorable(data-bs-toggle="modal" data-bs-target="#userSettingsMiniModal")
-              button.btn.btn-app.fw-bold.btn-sm Edit profile
+              = link_to "Edit profile", edit_user_registration_path, class: "btn btn-app fw-bold btn-sm"
             - else
               - if friends_with?(@user.id)
                 = link_to "Following", admin_delete_following_path(@user), class: "btn btn-app btn-sm", id: "flw", method: :delete
