@@ -7,6 +7,9 @@ module Admin
     def show
     end
 
+    def change_password
+    end
+
     def send_request
       send_follow_request(@user.id)
       redirect_back fallback_location: @user
