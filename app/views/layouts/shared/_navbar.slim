@@ -11,7 +11,7 @@ header.py-3.mb-4.border-bottom.bg-white.fixed-top
         = icon('fab', 'facebook-messenger', class: "text-dark pe-1-mobile")
       = link_to admin_feed_path do
         = icon('fas', 'compass', class: "text-dark pe-1-mobile")
-      button.d-flex.cursorable.follow-btn(type='button' data-bs-toggle='modal' data-bs-target='#followRequestModal')
+      button.d-flex.cursorable.follow-btn.p-0.align-items-center(type='button' data-bs-toggle='modal' data-bs-target='#followRequestModal')
         = icon('fas', 'heart', class: "text-dark pe-1-mobile")
       .dropdown
         a#dropdownUser.d-block.link-dark.text-decoration-none.dropdown-toggle(href='#' data-bs-toggle='dropdown' aria-expanded='false')
@@ -22,7 +22,7 @@ header.py-3.mb-4.border-bottom.bg-white.fixed-top
           li
             = link_to "Saved", admin_user_path(current_user, tab: 'saved'), class: "dropdown-item"
           li
-            a.dropdown-item(href='#') Settings
+            = link_to "Settings", edit_user_registration_path, class: "dropdown-item"
           li
             hr.dropdown-divider
           li

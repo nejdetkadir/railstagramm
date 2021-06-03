@@ -293,4 +293,16 @@ i.liked{
     margin-bottom: 15px !important;
     margin-right: 15px !important;
   }
+
+  .edit-layout-card {
+
+    #v-pills-tab {
+      display: none;
+    }
+    
+    .col-md-8{
+      border-left: none !important;
+      padding: 1.5rem;
+    }
+  }
 }
