@@ -20,7 +20,7 @@ header.py-3.mb-4.border-bottom.bg-white.fixed-top
           li
             = link_to "Profile", admin_user_path(current_user), class: "dropdown-item"
           li
-            a.dropdown-item(href='#') Saved
+            = link_to "Saved", admin_user_path(current_user, tab: 'saved'), class: "dropdown-item"
           li
             a.dropdown-item(href='#') Settings
           li

@@ -5,6 +5,7 @@ module Admin
     include FriendshipHelper
 
     def show
+      @posts = @user.posts.order(created_at: :desc)
     end
 
     def change_password

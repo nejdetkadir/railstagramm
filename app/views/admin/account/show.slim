@@ -34,25 +34,25 @@
       .mt-5
         nav
           #nav-tab.nav.nav-tabs.nav-fill(role='tablist')
-            button#nav-posts-tab.nav-link.active(data-bs-toggle='tab' data-bs-target='#nav-posts' type='button' role='tab' aria-controls='nav-posts' aria-selected='true')
+            button#nav-posts-tab.nav-link(class='#{"active" if params[:tab] == "posts" || params[:tab] != "saved" && params[:tab] != "videos"}' data-bs-toggle='tab' data-bs-target='#nav-posts' type='button' role='tab' aria-controls='nav-posts' aria-selected='true')
               = icon('fas', 'table', class: "pe-1")
               | POSTS
-            button#nav-videos-tab.nav-link(data-bs-toggle='tab' data-bs-target='#nav-videos' type='button' role='tab' aria-controls='nav-videos' aria-selected='false')
+            button#nav-videos-tab.nav-link(class='#{"active" if params[:tab] == "videos"}' data-bs-toggle='tab' data-bs-target='#nav-videos' type='button' role='tab' aria-controls='nav-videos' aria-selected='false')
               = icon('fas', 'film', class: "pe-1")
               | VIDEOS
             - if check_me(@user)
-              button#nav-bookmarks-tab.nav-link(data-bs-toggle='tab' data-bs-target='#nav-bookmarks' type='button' role='tab' aria-controls='nav-bookmarks' aria-selected='false')
+              button#nav-bookmarks-tab.nav-link(class='#{"active" if params[:tab] == "saved"}'data-bs-toggle='tab' data-bs-target='#nav-bookmarks' type='button' role='tab' aria-controls='nav-bookmarks' aria-selected='false')
                 = icon('far', 'bookmark', class: "pe-1")
                 | SAVED
         #nav-tabContent.tab-content
-          #nav-posts.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='nav-posts-tab')
+          #nav-posts.tab-pane.fade(class='#{"show active" if params[:tab] == "posts" || params[:tab] != "saved" && params[:tab] != "videos"}'role='tabpanel' aria-labelledby='nav-posts-tab')
             .row.mt-3
-              - @user.posts.each do |p|
+              - @posts.each do |p|
                 = render "admin/posts/small_post", post: p
-          #nav-videos.tab-pane.fade(role='tabpanel' aria-labelledby='nav-videos-tab')
+          #nav-videos.tab-pane.fade(class='#{"show active" if params[:tab] == "videos"}' role='tabpanel' aria-labelledby='nav-videos-tab')
             .row.mt-3
           - if check_me(@user)
-            #nav-bookmarks.tab-pane.fade(role='tabpanel' aria-labelledby='nav-bookmarks-tab')
+            #nav-bookmarks.tab-pane.fade(class='#{"show active" if params[:tab] == "saved"}' role='tabpanel' aria-labelledby='nav-bookmarks-tab')
               .row.mt-3
                 - @user.saved_posts.each do |p|
                   = render "admin/posts/small_post", post: p.post
