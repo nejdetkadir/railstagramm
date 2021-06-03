@@ -1,0 +1,22 @@
+.col-md-10.mx-auto.pt-3.mb-3
+  - @activities.each do |activity|
+    - if activity.trackable_type.eql?("PostLike")
+      - if activity.key.split(".")[1].eql?("destroy")
+        = render "admin/account/edit/activity", text: "You unliked #{User.find(activity.parameters[:user_id]).fullname}'s post", activity: activity
+      - else
+        = render "admin/account/edit/activity", text: "You liked #{User.find(activity.parameters[:user_id]).fullname}'s post", activity: activity
+    - elsif activity.trackable_type.eql?("PostComment")
+      - if activity.key.split(".")[1].eql?("destroy")
+        = render "admin/account/edit/activity", text: activity.parameters[:user_id].eql?(activity.parameters[:post_owner_id]) ? "You was deleted your comment from your post" : "You was deleted your comment from #{User.find(activity.parameters[:user_id]).fullname}'s post", activity: activity
+      - else
+        = render "admin/account/edit/activity", text: activity.parameters[:user_id].eql?(activity.parameters[:post_owner_id]) ? "You commented to your post" : "You commented #{User.find(activity.parameters[:user_id]).fullname}'s post", activity: activity
+    - elsif activity.trackable_type.eql?("Post")
+      - if activity.key.split(".")[1].eql?("destroy")
+        = render "admin/account/edit/activity", text: "You was removed a post", activity: activity
+      - else
+        = render "admin/account/edit/activity", text: "You was shared a post", activity: activity
+    - elsif activity.trackable_type.eql?("SavedPost")
+      - if activity.key.split(".")[1].eql?("destroy")
+        = render "admin/account/edit/activity", text: activity.parameters[:user_id].eql?(activity.owner_id) ? "You was removed your post from saved posts" : "You was removed #{User.find(activity.parameters[:user_id]).fullname}'s post from saved posts", activity: activity
+      - else
+        = render "admin/account/edit/activity", text: activity.parameters[:user_id].eql?(activity.owner_id) ? "You was added your post to saved posts" : "You was added #{User.find(activity.parameters[:user_id]).fullname}'s post to saved posts", activity: activity

@@ -3,9 +3,6 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :username, use: :slugged
 
-  include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller.current_user } 
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

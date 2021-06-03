@@ -11,6 +11,7 @@ module Admin
     end
 
     def activities
+      @activities = PublicActivity::Activity.where(owner_id: current_user.id).order(created_at: :desc).limit(4)
     end
 
     def send_request

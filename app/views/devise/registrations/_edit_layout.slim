@@ -8,11 +8,14 @@
               #v-pills-tab.nav.flex-column.nav-pills
                 = link_to "Edit Profile", edit_user_registration_path, class: "nav-link text-center #{"active" if type == 0}"
                 = link_to "Change Password", admin_change_password_path, class: "nav-link text-center #{"active" if type == 1}"
+                = link_to "Activities", admin_activities_path, class: "nav-link text-center #{"active" if type == 2}"
             .col-md-8.border-left
               .tab-content
                 .tab-pane.fade.show.active
                   .row
                     - if type == 0
-                      = render "devise/registrations/forms/edit_profile_form"
+                      = render "admin/account/edit/edit_profile_form"
+                    - elsif type == 1
+                      = render "admin/account/edit/change_password_form"
                     - else
-                      = render "devise/registrations/forms/change_password_form"
+                      = render "admin/account/edit/activities"

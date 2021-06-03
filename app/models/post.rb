@@ -9,5 +9,5 @@ class Post < ApplicationRecord
   validates_presence_of :image, message: "can not be blank"
 
   include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller.current_user } 
+  tracked owner: Proc.new{ |controller, model| controller.current_user }, params: {user_id: Proc.new{ |controller, model| model.user_id }}
 end
