@@ -1,0 +1,33 @@
+.container
+  .row
+    .col-md-12.col-sm-12.col-lg-9.mx-auto.mt-4.mb-4
+      .card.messages-layout-card
+        .card-body.p-0
+          .row.bsgtr-0
+            .col-md-4
+              .card.b-none
+                .card-body
+                  .text-center #{current_user.username}
+              .rooms
+                - 50.times do |i|
+                  = link_to root_path, class: "d-flex align-items-center justify-content-start room-link" do
+                    = image_tag current_user.profile_url(:medium)
+                    .fs-5.fw-light.ps-2 room #{i}
+            .col-md-8.border-left
+              .card.b-none
+                .card-body.d-flex.align-items-center.justify-content-between
+                  .d-flex.align-items-center.justify-content-start
+                    = image_tag current_user.profile_url(:small)
+                    .text-center.ps-2.fw-bold #{current_user.username}
+                  = icon('fas', 'info-circle', class: "cursorable fs-4")
+              .ps-2.pe-2.messages
+                - 50.times do |m|
+                  = render "admin/messages/message", type: m, text: "selam"
+              .mt-2
+                form.p-3.row.align-items-center
+                  .col-md-10
+                    input.form-control(type='text')
+                  .col-md-2
+                    .d-flex.align-items-center.justify-content-between
+                      = icon('fas', 'image', class: "cursorable")
+                      = icon('fas', 'location-arrow', class: "cursorable")

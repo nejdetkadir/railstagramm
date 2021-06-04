@@ -274,6 +274,87 @@ i.liked{
   --bs-gutter-x: 0 !important;
 }
 
+.messages-layout-card{
+  .nav-link{
+    cursor: pointer;
+  }
+
+  .b-none{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    position: sticky;
+    top: 0;
+  }
+
+  .rooms{
+    height: 70vh;
+    overflow-y: auto;
+
+    .room-link{
+      text-decoration: none;
+      color: black !important;
+      padding: 0.7rem;
+
+      img{
+        border-radius: 50%;
+        border: 1px solid rgba(0,0,0,.125);
+      }
+
+      &:hover{
+        background-color: #00000014;
+      }
+    }
+  }
+
+  .col-md-8{
+
+    .messages{
+      height: 60vh;
+      overflow-y: auto;
+    }
+    
+    .message{
+      margin-top: 1rem;
+      
+      img{
+        border-radius: 50% !important;
+        border: 1px solid rgba(0,0,0,.125);
+      }
+
+      .fs-6{
+        border-radius: 50px;
+        width: fit-content;
+        padding: 10px;
+      }
+
+      &.me{
+        .fs-6{
+          border: 1px solid rgba(0,0,0,.125);
+        }
+      }
+
+      &.their{
+        .fs-6{
+          background-color: #efefef;
+        }
+      }
+    }
+
+    form{
+
+      .col-md-2{
+        i{
+          padding: 10px;
+          border-radius: 50%;
+          background-color: rgba(0,0,0,.125);
+        }
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .d-none-mobile{
     display: none !important;

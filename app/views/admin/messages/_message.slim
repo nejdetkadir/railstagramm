@@ -1,0 +1,10 @@
+- if type % 2 == 0
+  .message.me.d-flex.justify-content-end.align-items-center
+    .fs-6 #{text}
+    .ps-1
+      = image_tag current_user.profile_url(:small)
+- else
+  .message.their.d-flex.justify-content-start.align-items-center
+    .pe-1
+      = image_tag current_user.profile_url(:small)
+    .fs-6 #{text}
