@@ -13,6 +13,8 @@ authenticate :user do
     get 'users/edit/change-password', to: 'account#change_password', as: 'change_password'
     get 'users/activities', to: 'account#activities', as: 'activities'
 
+    resources :messages
+    
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
       resources :post_likes, only: [:create, :destroy]
