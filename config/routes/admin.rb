@@ -14,7 +14,8 @@ authenticate :user do
     get 'users/activities', to: 'account#activities', as: 'activities'
 
     resources :messages
-    
+    resources :rooms
+
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
       resources :post_likes, only: [:create, :destroy]
