@@ -15,6 +15,7 @@ authenticate :user do
 
     resources :messages
     resources :rooms
+    resources :participants
 
     resources :posts do
       resources :post_comments, only: [:create, :destroy]

@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :post_likes, dependent: :destroy
   has_many :saved_posts, dependent: :destroy
   has_many :rooms
+  has_many :participants
 
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
